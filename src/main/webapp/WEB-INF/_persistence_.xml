@@ -1,0 +1,17 @@
+<persistence-unit name="vieworders" transaction-type="JTA">
+    <description>View orders</description>
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
+
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+        <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
+        <property name="hibernate.show_sql" value="true"/>
+        <property name="hibernate.format_sql" value="true"/>
+        <property name="hibernate.query.startup_check" value="true"/>
+        <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+        <property name="javax.persistence.schema-generation.create-source" value="metadata"/>
+        <property name="javax.persistence.sql-load-script-source" value="WEB-INF/db/populateDB.sql"/>
+        <property name="hibernate.hbm2ddl.auto" value="create"/>
+    </properties>
+</persistence-unit>
