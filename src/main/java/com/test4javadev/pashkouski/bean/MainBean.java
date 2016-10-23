@@ -41,7 +41,7 @@ public class MainBean implements Serializable {
         root = new DefaultTreeNode("Root", null);
 
         for (Order o : getOrders()) {
-            TreeNode orderNode = new DefaultTreeNode(o.toString(), root);
+            TreeNode orderNode = new DefaultTreeNode(o, root);
             for (Product p : o.getProducts()) {
                 orderNode.getChildren().add(new DefaultTreeNode(p.toString()));
             }

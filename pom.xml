@@ -76,12 +76,13 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.primefaces.themes/afterdark -->
+        <!-- https://mvnrepository.com/artifact/org.primefaces.themes/bootstrap -->
         <dependency>
             <groupId>org.primefaces.themes</groupId>
-            <artifactId>afterdark</artifactId>
+            <artifactId>bootstrap</artifactId>
             <version>1.0.10</version>
         </dependency>
+
     </dependencies>
 
     <repositories>

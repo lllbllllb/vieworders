@@ -110,13 +110,10 @@ public class Order implements Serializable {
 
     @Override
     public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", amount=" + amount +
-                ", date=" + date +
-                ", products=" + products +
-                '}';
+        return "Order № " + id +
+                "\nClient: " + name +
+                "\nAddress: " + address +
+                "\nAmount: " + amount +
+                "\nDate=" + date;
     }
 }

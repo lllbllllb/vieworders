@@ -97,7 +97,6 @@ public class Product implements Serializable {
                 ", serialNumber='" + serialNumber + '\'' +
                 ", description='" + description + '\'' +
                 ", quantity=" + quantity +
-                ", parent=" + parent.getName() +
                 '}';
     }
 }
