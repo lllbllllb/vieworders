@@ -7,8 +7,9 @@ import java.util.Date;
 import java.util.List;
 
 @NamedQueries({
-        @NamedQuery(name = Order.GET_WITH_PRODUCTS, query = "SELECT o FROM Order o LEFT JOIN o.products WHERE o.id=:id"),
-        @NamedQuery(name = Order.GET_ALL_SORTED, query = "SELECT o FROM Order o JOIN FETCH o.products ORDER BY o.date DESC")
+        @NamedQuery(name = Order.GET_WITH_PRODUCTS, query = "SELECT DISTINCT o FROM Order o LEFT JOIN FETCH o.products WHERE o.id=:id"),
+        @NamedQuery(name = Order.GET_ALL_SORTED, query = "SELECT DISTINCT o FROM Order o LEFT JOIN FETCH o.products ORDER BY o.date DESC"),
+        @NamedQuery(name = Order.DELETE, query = "DELETE FROM Order o WHERE o.id=:id")
 })
 @Entity
 @Table(name = "orders")
@@ -17,6 +18,7 @@ public class Order implements Serializable {
 
     public static final String GET_WITH_PRODUCTS = "Order.getWithProducts";
     public static final String GET_ALL_SORTED = "Order.getAll";
+    public static final String DELETE = "Order.delete";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,8 +38,8 @@ public class Order implements Serializable {
     private Date date;
 
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "parent")
+    @OrderBy("id DESC ")
     private List<Product> products;
-
 
     public Integer getId() {
         return id;

@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @NamedQueries({
-        @NamedQuery(name = Product.GET_ALL_SORTED, query = "SELECT p FROM Product p WHERE p.parent.id=:orderId ORDER BY p.id DESC ")
+        @NamedQuery(name = Product.GET_ALL_SORTED, query = "SELECT p FROM Product p WHERE p.parent.id=:orderId")
 })
 @Entity
 @Table(name = "products")

@@ -1,9 +1,7 @@
 package com.test4javadev.pashkouski.service;
 
 import com.test4javadev.pashkouski.dao.OrderDao;
-import com.test4javadev.pashkouski.dao.ProductDao;
 import com.test4javadev.pashkouski.model.Order;
-import com.test4javadev.pashkouski.model.Product;
 
 import javax.inject.Inject;
 import javax.jws.WebService;
@@ -15,18 +13,19 @@ public class OrderService {
     @Inject
     OrderDao orderDao;
 
-    @Inject
-    ProductDao productDao;
-
     public Order get(int id) {
-        Order order = orderDao.get(id);
-        List<Product> products = productDao.getAll(id);
-        order.setProducts(products);
-        System.out.printf("\ngetOrder: %s\n", order);
-        return order;
+        return orderDao.get(id);
     }
 
     public List<Order> getAll() {
         return orderDao.getAll();
+    }
+
+    public Order save(Order order) {
+        return orderDao.save(order);
+    }
+
+    public boolean delete(int id) {
+        return orderDao.delete(id);
     }
 }

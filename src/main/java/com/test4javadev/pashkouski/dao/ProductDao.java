@@ -23,7 +23,6 @@ public class ProductDao {
 
     public List<Product> getAll(int orderId) {
         List<Product> products = em.createNamedQuery(Product.GET_ALL_SORTED).setParameter("orderId", orderId).getResultList();
-        System.out.printf("\ngetAllProduct: %s\n", products);
         return products;
     }
 }
