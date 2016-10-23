@@ -1,10 +1,11 @@
 package com.test4javadev.pashkouski.bean;
 
-import com.test4javadev.pashkouski.dao.OrderDao;
 import com.test4javadev.pashkouski.model.Order;
+import com.test4javadev.pashkouski.service.OrderService;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.inject.Inject;
 import java.io.Serializable;
 import java.util.List;
 
@@ -14,26 +15,23 @@ public class OrderBean implements Serializable {
 
     private static final long serialVersionUID = 109419129003495251L;
 
+    private Order order;
 
-    Order order;
-
-    private OrderDao orderDAO = new OrderDao();
+    @Inject
+    private OrderService orderService;
 
     public void setOrder(Order order) {
+        System.out.println("setOrder");
         this.order = order;
     }
 
-    public List<Order> getAll() {
-        return orderDAO.getAll();
-    }
-
     public Order getOrder() {
-        return orderDAO.get();
+        System.out.println("getOrder");
+        order = orderService.get(1000);                 //must be changed
+        return order;
     }
 
-//    @PostConstruct
-//    public void init() {
-//        Order order = orderDAO.get();
-//        System.out.println("!!!!!!!!!!!!!!!!!!!! " + order);
-//    }
+    public List<Order> getAll() {
+        return orderService.getAll();
+    }
 }

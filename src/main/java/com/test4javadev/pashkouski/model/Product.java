@@ -3,10 +3,15 @@ package com.test4javadev.pashkouski.model;
 import javax.persistence.*;
 import java.io.Serializable;
 
+@NamedQueries({
+        @NamedQuery(name = Product.GET_ALL_SORTED, query = "SELECT p FROM Product p WHERE p.parent.id=:orderId ORDER BY p.id DESC ")
+})
 @Entity
 @Table(name = "products")
 public class Product implements Serializable {
     private static final long serialVersionUID = 8801388160115903932L;
+
+    public static final String GET_ALL_SORTED = "Product.getAll()";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,11 +27,8 @@ public class Product implements Serializable {
     private int quantity;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent")
+    @JoinColumn(name = "order_id")
     private Order parent;
-
-//    @Column(name = "order_id")
-//    private int orderId;
 
     public Integer getId() {
         return id;
@@ -68,14 +70,6 @@ public class Product implements Serializable {
         this.parent = orderwe;
     }
 
-//    public int getOrderId() {
-//        return orderId;
-//    }
-//
-//    public void setOrderId(int orderId) {
-//        this.orderId = orderId;
-//    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -103,7 +97,7 @@ public class Product implements Serializable {
                 ", serialNumber='" + serialNumber + '\'' +
                 ", description='" + description + '\'' +
                 ", quantity=" + quantity +
-                ", parent=" + parent +
+                ", parent=" + parent.getName() +
                 '}';
     }
 }

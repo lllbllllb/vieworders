@@ -6,10 +6,17 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+@NamedQueries({
+        @NamedQuery(name = Order.GET_WITH_PRODUCTS, query = "SELECT o FROM Order o LEFT JOIN o.products WHERE o.id=:id"),
+        @NamedQuery(name = Order.GET_ALL_SORTED, query = "SELECT o FROM Order o JOIN FETCH o.products ORDER BY o.date DESC")
+})
 @Entity
 @Table(name = "orders")
 public class Order implements Serializable {
     private static final long serialVersionUID = 7184335194861844774L;
+
+    public static final String GET_WITH_PRODUCTS = "Order.getWithProducts";
+    public static final String GET_ALL_SORTED = "Order.getAll";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +32,7 @@ public class Order implements Serializable {
     private int amount;
 
     @Column(name = "registered")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "parent")
