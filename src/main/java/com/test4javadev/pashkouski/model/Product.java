@@ -92,11 +92,6 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", serialNumber='" + serialNumber + '\'' +
-                ", description='" + description + '\'' +
-                ", quantity=" + quantity +
-                '}';
+        return  description + " (S/N " + serialNumber + "), " + quantity + " pcs";
     }
 }

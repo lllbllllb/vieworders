@@ -18,19 +18,19 @@
         <primefaces.version>6.0</primefaces.version>
         <primefaces.extensions.version>6.0.0</primefaces.extensions.version>
         <h2database.version>1.4.192</h2database.version>
-
+        <cxf-rt.version>3.1.7</cxf-rt.version>
     </properties>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
-<!--
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>5.1.1.Final</version>
-            <scope>provided</scope>
-        </dependency>
--->
+        <!--
+                <dependency>
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>hibernate-entitymanager</artifactId>
+                    <version>5.1.1.Final</version>
+                    <scope>provided</scope>
+                </dependency>
+        -->
 
         <dependency>
             <groupId>javax</groupId>
@@ -76,13 +76,32 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.primefaces.themes/bootstrap -->
+        <!-- https://mvnrepository.com/artifact/org.primefaces.themes/afterdark -->
         <dependency>
             <groupId>org.primefaces.themes</groupId>
-            <artifactId>bootstrap</artifactId>
+            <artifactId>afterdark</artifactId>
             <version>1.0.10</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-frontend-jaxws-->
+<!--
+
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxws</artifactId>
+            <version>${cxf-rt.version}</version>
+        </dependency>
+-->
+
+
+        <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-transports-http-->
+<!--
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http</artifactId>
+            <version>${cxf-rt.version}</version>
+        </dependency>
+-->
     </dependencies>
 
     <repositories>

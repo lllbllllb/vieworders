@@ -10,19 +10,57 @@
     <title>View orders App</title>
     <style type="text/css">
         .ui-tree {
+            top: 10%  !important;
+            /*left: 20%;*/
             width: 100%;
+            position: absolute;
+        }
+
+        .ui-notificationbar.ui-widget {
+            top: 4% !important;
+            width: 100%;
+            height: 2%;
         }
     </style>
 </h:head>
 <h:body>
-       <h:form>
-           <h3>View orders App</h3>
-           <p:tree value="#{orderBean.root}" var="node" dynamic="true">
-               <p:treeNode>
-                   <h:outputText value="#{node}"/>
-               </p:treeNode>
-           </p:tree>
-       </h:form>
+
+    <h:form>
+
+        <p:notificationBar position="top" effect="slide" styleClass="bottom" widgetVar="bar">
+            <h:outputText value="Hello, EGAR! :D Time of the last update of the page #{viewBean.entryDate}" style="font-size:100%;" />
+        </p:notificationBar>
+
+
+
+        <p:growl id="messages" showDetail="true" />
+
+        <p:tree  id="orders" value="#{viewBean.root}" var="node"  selectionMode="single" selection="#{viewBean.selectedNode}"  dynamic="true">
+            <p:treeNode>
+                <h:outputText value="#{node}"/>
+            </p:treeNode>
+        </p:tree>
+
+        <p:contextMenu for="orders">
+            <p:menuitem value="View" update="messages" actionListener="#{viewBean.displaySelectedSingle}" icon="ui-icon-search" />
+            <p:menuitem value="Delete" update="orders" actionListener="#{viewBean.deleteNode}" icon="ui-icon-close"/>
+        </p:contextMenu>
+
+
+        <p:commandButton value="Show date and time" onclick="PF('bar').show()" type="button" icon="ui-icon-arrow-1-s"/>
+        <p:commandButton value="Hide date and time" onclick="PF('bar').hide()" type="button" icon="ui-icon-arrow-1-n"/>
+    </h:form>
+    <!--
+        <h:form>
+            <h3>View orders App</h3>
+            <p:tree  id="orders" value="#{viewBean.root}" var="node"  selectionMode="single" selection="#{orderManager.selectedNode}"  dynamic="true">
+                <p:treeNode>
+                    <h:outputText value="#{node}"/>
+                </p:treeNode>
+            </p:tree>
+        </h:form>
+    -->
+
 
 </h:body>
 </html>

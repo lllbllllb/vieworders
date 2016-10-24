@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://soap.pashkouski.test4javadev.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="SoapDateProducer" targetNamespace="http://soap.pashkouski.test4javadev.com/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://soap.pashkouski.test4javadev.com/" elementFormDefault="unqualified" targetNamespace="http://soap.pashkouski.test4javadev.com/" version="1.0">
+
+  <xs:element name="getDate" type="tns:getDate"/>
+
+  <xs:element name="getDateResponse" type="tns:getDateResponse"/>
+
+  <xs:element name="getStringDate" type="tns:getStringDate"/>
+
+  <xs:element name="getStringDateResponse" type="tns:getStringDateResponse"/>
+
+  <xs:complexType name="getDate">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="getDateResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:localDateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType final="extension restriction" name="localDateTime">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="getStringDate">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="getStringDateResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getDate">
+    <wsdl:part element="tns:getDate" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDateResponse">
+    <wsdl:part element="tns:getDateResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStringDate">
+    <wsdl:part element="tns:getStringDate" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStringDateResponse">
+    <wsdl:part element="tns:getStringDateResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="DateWebService">
+    <wsdl:operation name="getDate">
+      <wsdl:input message="tns:getDate" name="getDate">
+    </wsdl:input>
+      <wsdl:output message="tns:getDateResponse" name="getDateResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStringDate">
+      <wsdl:input message="tns:getStringDate" name="getStringDate">
+    </wsdl:input>
+      <wsdl:output message="tns:getStringDateResponse" name="getStringDateResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SoapDateProducerSoapBinding" type="tns:DateWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getDate">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getDate">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getDateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStringDate">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getStringDate">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getStringDateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SoapDateProducer">
+    <wsdl:port binding="tns:SoapDateProducerSoapBinding" name="SoapDateProducerPort">
+      <soap:address location="http://127.0.0.1:8085/dateproducer/soap/DateWebService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

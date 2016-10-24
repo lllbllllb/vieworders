@@ -111,9 +111,9 @@ public class Order implements Serializable {
     @Override
     public String toString() {
         return "Order № " + id +
-                "\nClient: " + name +
-                "\nAddress: " + address +
-                "\nAmount: " + amount +
-                "\nDate=" + date;
+                '\n' + "Client: " + name +
+                '\n' + "Address: " + address +
+                '\n' + "Amount: " + amount +
+                '\n' + "Date=" + date;
     }
 }

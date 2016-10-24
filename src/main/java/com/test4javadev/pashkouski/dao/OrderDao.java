@@ -34,7 +34,9 @@ public class OrderDao {
         }
     }
 
+    @Transactional
     public boolean delete(int id) {
-        return em.createNamedQuery(Order.DELETE, Order.class).setParameter("id", id).executeUpdate() != 0;
+//        return em.createQuery("DELETE FROM Order AS o WHERE o.id=:id").setParameter("id", id).executeUpdate() != 1;
+        return em.createNamedQuery(Order.DELETE).setParameter("id", id).executeUpdate() != 0;
     }
 }
