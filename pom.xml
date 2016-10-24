@@ -23,14 +23,26 @@
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
-        <!--
                 <dependency>
                     <groupId>org.hibernate</groupId>
                     <artifactId>hibernate-entitymanager</artifactId>
                     <version>5.1.1.Final</version>
                     <scope>provided</scope>
                 </dependency>
-        -->
+
+        <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+<!--
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2database.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+-->
 
         <dependency>
             <groupId>javax</groupId>
@@ -64,44 +76,12 @@
             <version>${primefaces.extensions.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>${h2database.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate.javax.persistence</groupId>
-            <artifactId>hibernate-jpa-2.1-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
         <!-- https://mvnrepository.com/artifact/org.primefaces.themes/afterdark -->
         <dependency>
             <groupId>org.primefaces.themes</groupId>
             <artifactId>afterdark</artifactId>
             <version>1.0.10</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-frontend-jaxws-->
-<!--
-
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-frontend-jaxws</artifactId>
-            <version>${cxf-rt.version}</version>
-        </dependency>
--->
-
-
-        <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-transports-http-->
-<!--
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-transports-http</artifactId>
-            <version>${cxf-rt.version}</version>
-        </dependency>
--->
     </dependencies>
 
     <repositories>

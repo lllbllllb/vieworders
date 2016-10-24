@@ -17,6 +17,7 @@ public class OrderDao {
     @PersistenceContext(unitName = "vieworders")
     private EntityManager em;
 
+    //for update window (coming soon)
     public Order get(int id) {
         return em.createNamedQuery(Order.GET_WITH_PRODUCTS, Order.class).setParameter("id", id).getSingleResult();
     }
@@ -25,6 +26,7 @@ public class OrderDao {
         return em.createNamedQuery(Order.GET_ALL_SORTED, Order.class).getResultList();
     }
 
+    @Transactional
     public Order save(Order order) {
         if (order.getId() == null) {
             em.persist(order);
@@ -36,7 +38,6 @@ public class OrderDao {
 
     @Transactional
     public boolean delete(int id) {
-//        return em.createQuery("DELETE FROM Order AS o WHERE o.id=:id").setParameter("id", id).executeUpdate() != 1;
         return em.createNamedQuery(Order.DELETE).setParameter("id", id).executeUpdate() != 0;
     }
 }

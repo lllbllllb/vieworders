@@ -1,7 +1,9 @@
 package com.test4javadev.pashkouski.bean;
 
 import com.test4javadev.pashkouski.model.Order;
+import com.test4javadev.pashkouski.model.Product;
 import com.test4javadev.pashkouski.service.OrderService;
+import com.test4javadev.pashkouski.service.ProductService;
 import com.test4javadev.pashkouski.service.SoapService;
 import org.primefaces.model.TreeNode;
 
@@ -28,6 +30,9 @@ public class ViewBean implements Serializable {
 
     @Inject
     private OrderService orderService;
+
+    @Inject
+    private ProductService productService;
 
     @Inject
     private SoapService soapService;
@@ -64,18 +69,41 @@ public class ViewBean implements Serializable {
     }
 
     public void deleteNode() {
-//
-//        Object object = selectedNode.getData();
-//        if (object instanceof Order) {
-//            orderService.delete(((Order) object).getId());
-//        }
+
+        Object object = selectedNode.getData();
+
+        if (object instanceof Order) {
+            orderService.delete(((Order) object).getId());
+        }
+
+        if (object instanceof Product) {
+            productService.delete(((Product) object).getId());
+        }
 
         selectedNode.getChildren().clear();
         selectedNode.getParent().getChildren().remove(selectedNode);
         selectedNode.setParent(null);
         selectedNode = null;
+    }
 
+    public String goToUpdate() {
+        return "update.xhtml?faces-redirect=true";
+    }
 
+    public String addProduct() {
+        Object object = selectedNode.getData();
+
+        int id = 1000;
+
+        if (object instanceof Order) {
+            id = ((Order)object).getId();
+        }
+
+        if (object instanceof Product) {
+            id = ((Product) object).getParent().getId();
+        }
+
+        return "addproduct.xhtml?faces-redirect=true&id=" + id;
     }
 
     public String getEntryDate() {

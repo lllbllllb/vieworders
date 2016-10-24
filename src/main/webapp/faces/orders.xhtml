@@ -28,10 +28,8 @@
     <h:form>
 
         <p:notificationBar position="top" effect="slide" styleClass="bottom" widgetVar="bar">
-            <h:outputText value="Hello, EGAR! :D Time of the last update of the page #{viewBean.entryDate}" style="font-size:100%;" />
+            <h:outputText value="Hello, EGAR! : ) Time of the last update of the page: #{viewBean.entryDate}" style="font-size:100%;" />
         </p:notificationBar>
-
-
 
         <p:growl id="messages" showDetail="true" />
 
@@ -44,23 +42,13 @@
         <p:contextMenu for="orders">
             <p:menuitem value="View" update="messages" actionListener="#{viewBean.displaySelectedSingle}" icon="ui-icon-search" />
             <p:menuitem value="Delete" update="orders" actionListener="#{viewBean.deleteNode}" icon="ui-icon-close"/>
+            <p:menuitem value="Add product" action="#{viewBean.addProduct}" icon="ui-icon-plus"/>
         </p:contextMenu>
-
 
         <p:commandButton value="Show date and time" onclick="PF('bar').show()" type="button" icon="ui-icon-arrow-1-s"/>
         <p:commandButton value="Hide date and time" onclick="PF('bar').hide()" type="button" icon="ui-icon-arrow-1-n"/>
+
+        <p:commandButton value="Add Order" id="nonAjax" action="#{viewBean.goToUpdate}" ajax="false" />
     </h:form>
-    <!--
-        <h:form>
-            <h3>View orders App</h3>
-            <p:tree  id="orders" value="#{viewBean.root}" var="node"  selectionMode="single" selection="#{orderManager.selectedNode}"  dynamic="true">
-                <p:treeNode>
-                    <h:outputText value="#{node}"/>
-                </p:treeNode>
-            </p:tree>
-        </h:form>
-    -->
-
-
 </h:body>
 </html>

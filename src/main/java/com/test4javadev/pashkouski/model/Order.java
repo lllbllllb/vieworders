@@ -1,5 +1,11 @@
 package com.test4javadev.pashkouski.model;
 
+//import org.hibernate.annotations.OnDelete;
+//import org.hibernate.annotations.OnDeleteAction;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 
 import java.io.Serializable;
@@ -39,7 +45,19 @@ public class Order implements Serializable {
 
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "parent")
     @OrderBy("id DESC ")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Product> products;
+
+    public Order() {
+
+    }
+
+    public Order(String name, String address, int amount, Date date) {
+        this.name = name;
+        this.address = address;
+        this.amount = amount;
+        this.date = date;
+    }
 
     public Integer getId() {
         return id;
@@ -111,9 +129,9 @@ public class Order implements Serializable {
     @Override
     public String toString() {
         return "Order № " + id +
-                '\n' + "Client: " + name +
-                '\n' + "Address: " + address +
-                '\n' + "Amount: " + amount +
-                '\n' + "Date=" + date;
+                "; " + "Client: " + name +
+                "; " + "Address: " + address +
+                "; " + "Amount: " + amount +
+                "; " + "Date=" + date;
     }
 }

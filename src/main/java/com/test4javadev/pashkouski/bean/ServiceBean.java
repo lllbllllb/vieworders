@@ -6,13 +6,10 @@ import com.test4javadev.pashkouski.service.OrderService;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import java.io.Serializable;
-import java.util.List;
 
 @ManagedBean(name = "treeService")
 @ApplicationScoped
@@ -29,7 +26,7 @@ public class ServiceBean implements Serializable {
         for (Order o : orderService.getAll()) {
             TreeNode orderNode = new DefaultTreeNode(o, root);
             for (Product p : o.getProducts()) {
-                orderNode.getChildren().add(new DefaultTreeNode(p.toString()));
+                orderNode.getChildren().add(new DefaultTreeNode(p));
             }
         }
 

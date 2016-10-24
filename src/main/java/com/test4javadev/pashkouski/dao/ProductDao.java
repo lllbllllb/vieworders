@@ -1,5 +1,6 @@
 package com.test4javadev.pashkouski.dao;
 
+import com.test4javadev.pashkouski.model.Order;
 import com.test4javadev.pashkouski.model.Product;
 
 import javax.ejb.LocalBean;
@@ -22,7 +23,23 @@ public class ProductDao {
     }
 
     public List<Product> getAll(int orderId) {
-        List<Product> products = em.createNamedQuery(Product.GET_ALL_SORTED).setParameter("orderId", orderId).getResultList();
-        return products;
+        return em.createNamedQuery(Product.GET_ALL_SORTED).setParameter("orderId", orderId).getResultList();
+    }
+
+    @Transactional
+    public Product save(Product product, int orderId) {
+        product.setParent(em.getReference(Order.class, orderId));
+
+        if (product.getId() == null) {
+            em.persist(product);
+            return product;
+        } else {
+            return em.merge(product);
+        }
+    }
+
+    @Transactional
+    public boolean delete (int id) {
+        return em.createNamedQuery(Product.DELETE).setParameter("id", id).executeUpdate() != 0;
     }
 }

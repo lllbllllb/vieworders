@@ -4,7 +4,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @NamedQueries({
-        @NamedQuery(name = Product.GET_ALL_SORTED, query = "SELECT p FROM Product p WHERE p.parent.id=:orderId")
+        @NamedQuery(name = Product.GET_ALL_SORTED, query = "SELECT p FROM Product p WHERE p.parent.id=:orderId"),
+        @NamedQuery(name = Product.DELETE, query = "DELETE FROM Product p WHERE p.id=:id")
 })
 @Entity
 @Table(name = "products")
@@ -12,6 +13,7 @@ public class Product implements Serializable {
     private static final long serialVersionUID = 8801388160115903932L;
 
     public static final String GET_ALL_SORTED = "Product.getAll()";
+    public static final String DELETE = "Product.delete";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +31,15 @@ public class Product implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private Order parent;
+
+    public Product() {
+    }
+
+    public Product(String serialNumber, String description, int quantity) {
+        this.serialNumber = serialNumber;
+        this.description = description;
+        this.quantity = quantity;
+    }
 
     public Integer getId() {
         return id;
@@ -92,6 +103,6 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return  description + " (S/N " + serialNumber + "), " + quantity + " pcs";
+        return  description + " (S/N: " + serialNumber + "), " + quantity + " pcs";
     }
 }
